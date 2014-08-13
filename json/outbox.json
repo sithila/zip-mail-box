@@ -1,0 +1,2 @@
+[{ "mail_from":"Sithila","mailaddress_from":"abcd@gmail.com", "imageUrl": "img/content/person1.jpg", "mail_short_detail_link":"about", "mail_short_detail":"this is regarding", "mail_time":"Nov 12 2014", "mail_attachment":"yes"   },
+ { "mail_from":"New Clients","mailaddress_from":"abcd@gmail.com", "imageUrl": "img/content/person1.jpg", "mail_short_detail_link":"125", "mail_short_detail":"we are there", "mail_time":"Nov 12 2014", "mail_attachment":"yes"   }]

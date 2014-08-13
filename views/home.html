@@ -1,0 +1,145 @@
+<div class="container-fluid">
+                <div class="row">
+                  <div class="mail-header"> 
+                        <h4>Mail</h4>
+                        <p>you have 2 massages</p>
+                       <button type="button" class="btn btn-success btn-sm new-massage">New Massage</button>
+                 </div>       
+                </div>
+                 <div class="row content-area">
+                 
+                       
+                    
+                
+                 
+                 <div class="mail-list" ng-controller="maillistCtrl">
+                 
+                 <div class="mailbox-list-topbar"> 
+                        <ul>
+                        <li><a href="" class="active" ng-click="loadMail()"><i class="fa fa-inbox"></i> Inbox</a></li>
+                         <li><a href="" ng-click="loadOutbox()"><i class="fa fa-paper-plane-o"></i> Sent</a></li>
+                          <li><a href=""><i class="fa fa-paperclip"></i> Draft</a></li>
+                           <li class="last"><a href=""><i class="fa fa-bomb"></i> Delete</a></li>
+                        </ul>
+                 </div>
+                 <div class="mailbox-list-searchbar">
+                 
+                 <form class="navbar-form" role="search">
+          <div class="input-group mail-search">
+            <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term" ng-model="query">
+            <div class="input-group-btn">
+              <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+            </div>
+          </div>
+        </form> 
+                 </div> 
+                 
+                 <div class="mail-boxes">
+                 
+                
+<div id="inner-content-div">
+<ul>
+ <li ng-repeat="emaillist in emaillist | filter:query" ng-click="setselectedEmail(emaillist)">
+ <div class="mail-item" ng-class="{selected: isSelected(emaillist)}">
+ 
+                <div class="mail-select">
+					<input type="checkbox" data-style="flat-red" data-cacheval="false">
+				</div>
+                <div class="mail-image">
+					<img class="" ng-src="{{emaillist.imageUrl}}" >				</div>
+                <p class="mail-from"><a ng-click="loadMailContent()">{{emaillist.mail_from}}</a></p><span class="no-of-mail"></span>
+                <p class="mail-short-details"><span class="bold">{{emaillist.mail_short_detail_link}}</span> {{emaillist.mail_short_detail}}</p>
+                <span class="mail-time">{{emaillist.mail_time}}</span>
+                <span class="mail-attachment"></span>                </div>
+</li>
+</ul>
+
+
+
+
+                
+                
+                
+
+
+</div>
+
+                 
+                 
+                 
+                 </div>
+                 </div>
+                 <div class="mail-body">
+                 <div class="mailbox-list-topbar"> 
+                        <ul class="pull-right">
+                        <li>
+                        <div class="dropdown dw-folder">
+  <a class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+    <i class="fa fa-folder-open"></i> 
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+    <li role="presentation" class="divider"></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+  </ul>
+</div>
+</li>
+                         <li class="c-folder"><a href=""><i class="fa fa-plus-square-o"></i> Create Folder </a></li>
+                        </ul>
+                 </div>
+                  <div class="mail-bar">
+                  <h3 class="mail-title">New Mail</h3>
+                  <button type="button" class="btn btn-default btn-sm print-all">New Massage</button>
+                  </div>
+                  <div id="inner-content-div2" class="mail-info-right" ng-controller="mailcontentCtrl">
+                  <div ng-show="!selectedEmail">
+                  
+                  
+                  </div>
+                  <div ng-show="selectedEmail">
+                  <div class="mail-top-info">
+                   <div class="mail-from-image">
+					<img class="img-responsive" src="img/content/person1.jpg">				</div>
+                <p class="mail-from-info"><span class="bold blue-text">{{selectedEmail.mail_from}}</span> {{selectedEmail.mailaddress_from}}</p>
+                  <p class="mail-to-info">{{selectedEmail.mail_from}}</p>
+                  <span class="mail-time-info">{{selectedEmail.mail_time}}</span>
+                  <button class="btn btn-default btn-sm reply-btn" type="button"><i class="fa fa-reply"></i></button>
+                  </div>
+                  <div class="mail-info-body">
+                  {{selectedEmail.mail_content}}
+                  
+                  
+                 
+                  <p>Best regards </p>
+                  <p>{{selectedEmail.mail_from}}</p>
+                  <div class="additional-mail-component">
+                  <span class="span-title">Attachment</span>
+                  <div class="attachment-image">
+									</div>
+                <p class="attch-title">google doc .xls</p>
+                <div class="attach-info"><span class="size">540 Kb</span><a class="view" href="">View</a><a class="download" href="">Download</a></div>
+                  </div>
+                  </div>
+                  
+                  </div>
+                  
+                  
+                  </div>
+                 
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+    <script>
+     $(function(){
+    $('#inner-content-div').slimScroll({
+        height: '430px'
+    });
+	$('#inner-content-div2').slimScroll({
+        height: '430px'
+    });
+});
+     </script>
