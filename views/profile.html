@@ -1,12 +1,20 @@
 <div class="container-fluid">
                 <div class="row">
-                  <div class="mail-header"> 
+                  <div class="mail-header" ng-controller="ModalDemoCtrl"> 
                         <h4>Profile</h4>
                         <p>under Construction</p>
-                       <button type="button" class="btn btn-success btn-sm new-massage">New Massage</button>
+                     
+                       <div ng-controller="ModalDemoCtrl"> 
+    <button type="button" class="btn btn-success btn-sm new-massage" data-animation="am-fade-and-slide-top" data-template="views/edit-profile.html" bs-modal="modal">Edit Profile
+      </button>
+      </div>
                  </div>       
                 </div>
-                 
+               <div ng-repeat="profileinfo in profileinfo"> 
+              <p>Name :{{profileinfo.profile_name}}</p> 
+               <p>Email :{{profileinfo.email}}</p>
+              </div>
+                
         </div>
         <!-- /#page-content-wrapper -->
    

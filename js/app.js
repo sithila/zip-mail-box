@@ -1,5 +1,5 @@
 (function () {
-  angular.module('app', ['ngRoute','emailFilters']);
+  angular.module('app', ['ngRoute','emailFilters','ngSanitize','mgcrea.ngStrap']);
   
     
   function config ($routeProvider) {
@@ -13,7 +13,7 @@
   })
   .when('/profile', {
     templateUrl: 'views/profile.html',
-    controller: 'MainCtrl',
+    controller: 'ProfileCtrl',
     controllerAs: 'main'
   })
   .when('/firm', {
