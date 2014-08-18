@@ -168,6 +168,27 @@ angular
   .controller('LoadEditProfile', LoadEditProfile);
 
 function mailcontentCtrl ($scope, $http) {
+	$scope.replingMail=false;
+	$scope.reply = {};
+	$scope.togglereplyMail = function() {
+		$scope.replingMail = !$scope.replingMail;
+		$scope.reply = {};
+	}
+	$scope.sendReply = function() {
+		
+		var data = $.param({
+            json: JSON.stringify({
+                to: $scope.reply.to,
+				massage: $scope.reply.body
+            })
+        });
+		$http.post("json/sentmail", data).success(function(data, status) {
+            $scope.newdata = data;
+        });
+	console.log('sent mail');
+		$scope.replingMail = !$scope.replingMail;
+		$scope.reply = {};
+	}
 	
 }
 angular
