@@ -37,28 +37,45 @@
           </div>
         </form> 
                  </div> 
-                 
+                  <div class="mailbox-list-shortbar">
+                   <button ng-click="checkAll()" style="margin-right: 10px" class="btn btn-default btn-sm">Select all</button>
+          <button ng-click="uncheckAll()" style="margin-right: 10px" class="btn btn-default btn-sm">UnSelect all</button>
+          <button ng-click="checkFirst()" class="btn btn-default btn-sm">Select first</button>
+                  <!--<p>user.emaillist  {{user.emaillist|json}}</p>-->
+          
+                  </div>
                  <div class="mail-boxes">
-                 
+                 <div class="mailbox-action-topbar" style="display:none;"> 
+                        <ul>
+                        <li><a href="" class="active" ng-click=""><i class="fa fa-bomb"></i>Delete </a></li>
+                         <li><a href="" ng-click=""><i class="fa fa-paper-plane-o"></i>Move </a></li>
+                        </ul>
+                 </div>
                 
 <div id="inner-content-div">
+
+          
+          
+        
 <ul>
- <li ng-repeat="emaillist in emaillist | filter:query" ng-click="setselectedEmail(emaillist)">
+ <li ng-repeat="emaillist in emaillist | filter:query">
  <div class="mail-item" ng-class="{selected: isSelected(emaillist)}">
  
-                <div class="mail-select">
-					<input type="checkbox" data-style="flat-red" data-cacheval="false">
+                <div class="mail-select" >
+					<!--<input class="chkmail" type="checkbox" ng-click="selectMailItem(emaillist)" data-style="flat-red" data-cacheval="false">-->
+                     <input type="checkbox" checklist-model="user.emaillist" ng-click="selectMailItem(emaillist)"  checklist-value="emaillist.id"> 
 				</div>
-                <div class="mail-image">
-					<img class="" ng-src="{{emaillist.imageUrl}}" >				</div>
-                <p class="mail-from"><a ng-click="loadMailContent()">{{emaillist.mail_from}}</a></p><span class="no-of-mail"></span>
+                <div class="mail-image" >
+					<img class="" ng-src="{{emaillist.imageUrl}}" >
+                    </div>
+                <p class="mail-from" ng-click="setselectedEmail(emaillist)"><a ng-click="loadMailContent()">{{emaillist.mail_from}}</a></p><span class="no-of-mail"></span>
                 <p class="mail-short-details"><span class="bold">{{emaillist.mail_short_detail_link}}</span> {{emaillist.mail_short_detail}}</p>
                 <span class="mail-time">{{emaillist.mail_time}}</span>
                 <span class="mail-attachment"></span>                </div>
 </li>
 </ul>
 
-
+ 
 
 
                 
@@ -165,10 +182,11 @@
             </div>
         </div>
         <!-- /#page-content-wrapper -->
+        <script src="js/mail-box.js"></script> 
     <script>
      $(function(){
     $('#inner-content-div').slimScroll({
-        height: '430px'
+        height: '384px'
     });
 	$('#inner-content-div2').slimScroll({
         height: '430px'

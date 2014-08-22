@@ -1,5 +1,5 @@
 (function () {
-  angular.module('app', ['ngRoute','emailFilters','ngSanitize','mgcrea.ngStrap']);
+  angular.module('app', ['ngRoute','emailFilters','ngSanitize','mgcrea.ngStrap','checklist-model']);
   
     
   function config ($routeProvider) {

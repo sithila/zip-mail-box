@@ -1,12 +1,51 @@
 function MainCtrl ($scope) {
+	
+	
+	
+	
+	 $scope.user = {
+    emaillist: []
+  };
+  
+ $scope.checkAll = function() {
+    //$scope.user.emaillist = $scope.emaillist.map(function(item) { return item.mail_from; });
+	$scope.user.emaillist = [1,2,3,4,5];
+	$( ".mailbox-action-topbar" ).show();
+	//$scope.user.emaillist = angular.copy($scope.emaillist);
+  };
+  $scope.uncheckAll = function() {
+    $scope.user.emaillist = [];
+	$( ".mailbox-action-topbar" ).hide();
+  };
+  $scope.checkFirst = function() {
+    $scope.user.emaillist.splice(0, $scope.user.emaillist.length); 
+    $scope.user.emaillist.push(1);
+	$( ".mailbox-action-topbar" ).show();
+  };
+  
+  
 	$scope.selectedEmail;
 	 $scope.setselectedEmail = function(emaillist) {
-		 //alert(emaillist);
-		$scope.selectedEmail = emaillist; 
+		$scope.selectedEmail = emaillist;		
+	 };
+	 $scope.selectMailItem = function(emaillist) {
+		
+		 if(!$('#inner-content-div ul li input[type="checkbox"]').is(':checked')){
+      console.log( "hello!" );
+	  $( ".mailbox-action-topbar" ).hide();
+	 
+      return false;
+    }
+else{
+	//$scope.selectedEmail = emaillist;
+	 $( ".mailbox-action-topbar" ).show();	 
+}
+		
 	 };
 	 $scope.isSelected = function(emaillist) {
 		if ($scope.selectedEmail){
 		return 	$scope.selectedEmail === emaillist;
+		
 		}
 	 };
 
@@ -47,6 +86,7 @@ function maillistCtrl ($scope, $http) {
     };
 	
 	$scope.loadMailContent = function() {
+		
        $http.get('json/outbox.json')
        .then(function(maildata){
           $scope.emailinfo = maildata.data;
@@ -54,6 +94,8 @@ function maillistCtrl ($scope, $http) {
         });
 
     };
+	
+	
 
 
 }
@@ -92,11 +134,21 @@ function ProfileCtrl ($scope, $http) {
     };
 	
 	$scope.loadMailContent = function() {
+		
        $http.get('json/outbox.json')
        .then(function(maildata){
           $scope.emailinfo = maildata.data;
 		  //alert($scope.todos);                
         });
+
+    };
+	$scope.selectMailItem = function() {
+		alert('ffhfhf');
+       //$http.get('json/outbox.json')
+//       .then(function(maildata){
+//          $scope.emailinfo = maildata.data;
+//		  //alert($scope.todos);                
+//        });
 
     };
 

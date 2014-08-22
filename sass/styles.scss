@@ -122,9 +122,68 @@ font-size:16px;
 				 border-right:1px solid #D9D9D9;
 				 position:relative;
 				}
+				.mailbox-list-shortbar{
+				 height:46px; 
+				 border-bottom:1px solid #CCCCCC;
+				 background:#F8F8F8;
+				 border-right:1px solid #D9D9D9;
+				 padding:8px 15px;
+				 position:relative;
+				}
 				.mail-boxes{
-				 min-height:430px;
-				 border-right:1px solid #D9D9D9; 
+				 min-height:385px;
+				 position:relative;
+				 border-right:1px solid #D9D9D9;
+				 .mailbox-action-topbar{
+				 height:20px;
+				 border-bottom:1px solid #CCCCCC;
+				 position:absolute;
+				 top:0px;
+				 z-index:99999;
+				 background:#CCCCCC;
+				
+				 ul{
+					margin-left:0px;
+					padding-left:0px;
+					.active{
+							color:#838383;
+						}
+					li{
+						display:inline-block;
+						height:20px;
+						overflow:hidden;
+						border-left:1px solid #E9E9E9;
+						width:147px;
+						a{
+							padding:1px ;
+							font: bold 12px Arial, Helvetica, sans-serif;
+								line-height: 18px;
+								display:block;
+								color:#A8A8A8;
+								text-align:center;
+							i{
+							font-weight:normal;
+							}
+							} 
+						
+						}
+					}
+					.last{
+						border-right:1px solid #E9E9E9;
+						width:78px;
+						}
+					.c-folder{
+						width:120px;
+					}
+
+
+
+
+				 
+				 
+				 
+				 
+				} 
 				 
 				 ul{
 					margin:0px;
