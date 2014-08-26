@@ -1,8 +1,4 @@
 function MainCtrl ($scope) {
-	
-	
-	
-	
 	 $scope.user = {
     emaillist: []
   };
@@ -257,3 +253,4 @@ function homeCtrl ($scope, $http) {
 angular
   .module('app')
   .controller('homeCtrl', homeCtrl);
+
