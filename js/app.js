@@ -1,14 +1,22 @@
-var app = angular.module('app', ['ngRoute','emailFilters','ngSanitize','mgcrea.ngStrap','checklist-model']);
+var app = angular.module('app', ['ngRoute','emailFilters','ngSanitize','mgcrea.ngStrap','checklist-model','LocalStorageModule']);
 
 app.config(function($routeProvider) {
-  $routeProvider.when('/login', {
-    templateUrl: 'views/login.html',
-    controller: 'LoginCtrl'
+  $routeProvider.when('/home', {
+    templateUrl: 'views/home.html',
+    controller: 'maillistCtrl'
+  });
+  $routeProvider.when('/signup', {
+    templateUrl: 'views/signup.html',
+    controller: 'signupController'
   });
   $routeProvider.when('/', {
-    templateUrl: 'views/home.html',
-    controller: 'HomeCtrl'
+    templateUrl: 'views/login.html',
+    controller: 'loginController'
   });
+  //$routeProvider.when('/', {
+//    templateUrl: 'views/home.html',
+//    controller: 'HomeCtrl'
+//  });
    $routeProvider.when('/profile', {
     templateUrl: 'views/profile.html',
     controller: 'ProfileCtrl'
@@ -25,46 +33,25 @@ app.config(function($routeProvider) {
     templateUrl: 'views/earnings.html',
     controller: 'homeCtrl'
   });
-	 	 $routeProvider.when('/settings', {
+	$routeProvider.when('/settings', {
     templateUrl: 'views/settings.html',
     controller: 'homeCtrl'
-  });  
-  $routeProvider.otherwise({ redirectTo: '/' });
-});
-app.run(function(authentication, $rootScope, $location) {
-  $rootScope.$on('$routeChangeStart', function(evt) {
-    if(!authentication.isAuthenticated){ 
-      $location.url("/login");
-    }
-    evt.preventDefault();
   });
-})
 
-
-app.controller('LoginCtrl', function($scope, $http, $location, authentication) {
-  $scope.login = function() {
-    if ($scope.username === 'admin' && $scope.password === 'pass') {
-      console.log('successful')
-      authentication.isAuthenticated = true;
-      authentication.user = { name: $scope.username };
-      $location.url("/");
-    } else {
-      $scope.loginError = "Invalid username or password ";
-      console.log('Login failed..');
-    };
-  };
+  $routeProvider.otherwise({ redirectTo: '/login' });
 });
 
 
-
-app.controller('HomeCtrl', function($scope, authentication) {
-  $scope.user = authentication.user.name;
-  
+var serviceBase = 'http://ngauthenticationapi.azurewebsites.net/';
+app.constant('ngAuthSettings', {
+    apiServiceBaseUri: serviceBase,
+    clientId: 'ngAuthApp'
 });
 
-app.factory('authentication', function() {
-  return {
-    isAuthenticated: false,
-    user: null
-  }
+app.config(function ($httpProvider) {
+    $httpProvider.interceptors.push('authInterceptorService');
 });
+
+app.run(['authService', function (authService) {
+    authService.fillAuthData();
+}]);
